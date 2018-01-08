@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/messages"
+            android:title="消息" />
+
+        <item
+            android:id="@+id/nav_chongwu"
+            android:icon="@drawable/pet"
+            android:title="宠物" />
+
+        <item
+            android:id="@+id/nav_dingdan"
+            android:icon="@drawable/order_details"
+            android:title="订单" />
+
+        <item
+            android:id="@+id/nav_monney"
+            android:icon="@drawable/collection_account"
+            android:title="钱包" />
+
+        <item
+            android:id="@+id/nav_xuzhi"
+            android:icon="@drawable/about"
+            android:title="需知" />
+
+        <item
+            android:id="@+id/nav_shezhi"
+            android:icon="@drawable/perfect_information"
+            android:title="设置" />
+
+    </group>
+
+    <item android:title="申请成为寄养家庭"/>
+
+</menu>
