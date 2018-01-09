@@ -14,6 +14,10 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.laptop.happypet.R;
+import com.example.laptop.happypet.base.BaseActivity;
+import com.example.laptop.happypet.net.NetModel;
+import com.example.laptop.happypet.net.NetPresenter;
+import com.umeng.socialize.media.Base;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -24,7 +28,7 @@ import butterknife.OnClick;
  * Created by 丁军明 on 2018/1/4.
  */
 
-public class XiangActivity extends AppCompatActivity {
+public class XiangActivity extends BaseActivity<NetPresenter,NetModel> {
 
 
     @InjectView(R.id.Img_back)
@@ -42,13 +46,20 @@ public class XiangActivity extends AppCompatActivity {
     private PopupWindow popupWindow;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry);
-        ButterKnife.inject(this);
+    public int getLayoutId() {
+        return R.layout.activity_entry;
+    }
 
+    @Override
+    protected void initData() {
+        ButterKnife.inject(this);
+    }
+
+    @Override
+    protected void initView() {
 
     }
+
 
     @OnClick({R.id.Img_return, R.id.Img_more, R.id.evaluate_lin, R.id.call_him, R.id.order_him})
     public void onViewClicked(View view) {

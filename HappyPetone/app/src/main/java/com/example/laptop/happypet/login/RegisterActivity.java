@@ -14,12 +14,16 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.laptop.happypet.R;
+import com.example.laptop.happypet.base.BaseActivity;
 import com.example.laptop.happypet.login.entity.RegisterUser;
 import com.example.laptop.happypet.login.utitls.AppUtils;
 import com.example.laptop.happypet.login.utitls.IPUtils;
 import com.example.laptop.happypet.login.utitls.Md5Utils;
 import com.example.laptop.happypet.login.utitls.SignUtil;
 import com.example.laptop.happypet.login.utitls.TokenUtil;
+import com.example.laptop.happypet.net.NetModel;
+import com.example.laptop.happypet.net.NetPresenter;
+import com.umeng.socialize.media.Base;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +44,7 @@ import okhttp3.Response;
  * Created by 丁军明 on 2018/1/4.
  */
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity<NetPresenter,NetModel> {
 
 
     //拼接url字符串
@@ -64,17 +68,20 @@ public class RegisterActivity extends AppCompatActivity {
 //    String orderType="distance asc";
 
     private SharedPreferences sharedPreferences;
-
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    public int getLayoutId() {
+        return R.layout.activity_register;
+    }
+    @Override
+    protected void initData() {
         ButterKnife.inject(this);
         sharedPreferences = getSharedPreferences("users", MODE_PRIVATE);
-
     }
 
+    @Override
+    protected void initView() {
+
+    }
     @OnClick({R.id.register_cancel, R.id.register_loging, R.id.btn_register_verificationCode, R.id.btn_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {

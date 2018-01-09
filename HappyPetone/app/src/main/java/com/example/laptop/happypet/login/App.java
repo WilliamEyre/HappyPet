@@ -2,6 +2,7 @@ package com.example.laptop.happypet.login;
 
 import android.app.Application;
 
+import com.example.laptop.happypet.base.BaseActivity;
 import com.example.laptop.happypet.login.utitls.AppUtils;
 import com.example.laptop.happypet.login.utitls.TokenUtil;
 import com.lzy.okhttputils.OkHttpUtils;
@@ -17,7 +18,7 @@ public class App extends Application {
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
     }
-
+    public static BaseActivity baseActivity;
     public static  String token=null;
     public static  String sign;
     public static  String userId;

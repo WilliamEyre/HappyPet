@@ -21,12 +21,16 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.example.laptop.happypet.base.BaseActivity;
 import com.example.laptop.happypet.login.LoginActivity;
 import com.example.laptop.happypet.map.MapActivity;
+import com.example.laptop.happypet.net.NetModel;
+import com.example.laptop.happypet.net.NetPresenter;
 import com.example.laptop.happypet.ui.fujin.adapter.MyAdapter;
 import com.example.laptop.happypet.ui.fujin.adapter.bean.FuJinBean;
 import com.example.laptop.happypet.ui.fujin.adapter.FuJinAdapter;
 import com.google.gson.Gson;
+import com.umeng.socialize.media.Base;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +42,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity<NetPresenter,NetModel> implements View.OnClickListener{
 
     private ImageView mImageViewRen;
     private NavigationView mnav_view;
@@ -79,17 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        initView();
-
-        initData();
-    }
-
-    private void initData() {
+    protected void initData() {
         recyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         LinearLayoutManager layoutmanager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutmanager);
@@ -104,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMapPuticer.setOnClickListener(this);
     }
 
-    private void initView() {
+    protected void initView() {
         mImageViewRen = (ImageView) findViewById(R.id.ImageView_ren);
         mImageViewRen.setOnClickListener(this);
         //----------------侧滑菜单-----------------
@@ -155,6 +149,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
     //点击头像弹出侧滑菜单
     @Override
     public void onClick(View view) {

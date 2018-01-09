@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.laptop.happypet.R;
+import com.example.laptop.happypet.base.BaseActivity;
 import com.example.laptop.happypet.login.entity.LoginUser;
 import com.example.laptop.happypet.login.entity.UserInfo;
 import com.example.laptop.happypet.login.utitls.AppUtils;
@@ -20,9 +21,12 @@ import com.example.laptop.happypet.login.utitls.IPUtils;
 import com.example.laptop.happypet.login.utitls.Md5Utils;
 import com.example.laptop.happypet.login.utitls.SignUtil;
 import com.example.laptop.happypet.login.utitls.TokenUtil;
+import com.example.laptop.happypet.net.NetModel;
+import com.example.laptop.happypet.net.NetPresenter;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.Base;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +44,7 @@ import okhttp3.Response;
 import static com.example.laptop.happypet.login.App.userId;
 
 
-public class LoginActivity extends AppCompatActivity implements UMAuthListener {
+public class LoginActivity extends BaseActivity<NetPresenter,NetModel> implements UMAuthListener {
 
 
     @InjectView(R.id.loging_back)
@@ -65,11 +69,12 @@ public class LoginActivity extends AppCompatActivity implements UMAuthListener {
     //拼接url字符串
     String url = AppUtils.REQUESTURL + "/user/register.jhtml";
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    public int getLayoutId() {
+        return R.layout.activity_login;
+    }
+    @Override
+    protected void initData() {
         ButterKnife.inject(this);
 
         sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
@@ -77,8 +82,14 @@ public class LoginActivity extends AppCompatActivity implements UMAuthListener {
         String passV = sharedPreferences.getString("pass", "");
         logingPhone.setText(nameV);
         logingPsw.setText(passV);
+    }
+
+    @Override
+    protected void initView() {
 
     }
+
+
 
     @Override
     protected void onResume() {
